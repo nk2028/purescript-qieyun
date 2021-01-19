@@ -1,0 +1,28 @@
+{
+  "name": "purescript-qieyun",
+  "authors": [
+    "Ngiox Khyen 2028 Project <support@nk2028.shn.hk>"
+  ],
+  "description": "A PureScript library for the Qieyun phonological system",
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nk2028/purescript-qieyun.git"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "output",
+    "bower.json",
+    "package.json"
+  ],
+  "dependencies": {
+    "purescript-maybe": "^4.0.1",
+    "purescript-nullable": "^4.1.1",
+    "purescript-strings": "^4.0.2"
+  },
+  "devDependencies": {
+    "purescript-node-process": "^7.0.0"
+  }
+}
