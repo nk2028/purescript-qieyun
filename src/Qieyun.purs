@@ -1,29 +1,31 @@
-module Qieyun (
-  PhonologicalLocation,
+module Qieyun
+  ( PhonologicalLocation
+  -- The six elements of a phonological location
+  , initial
+  , rounding
+  , division
+  , repeatedInitial
+  , rhyme
+  , tone
+  -- Extended phonological attributes
+  , placeOfArticulation
+  , voicing
+  , phonologicalClass
+  -- Phonological description and encoding
+  , phonologicalDescription
+  , phonologicalEncoding
+  , phonologicalExpression
+  -- Constructor
+  , fromPhonologicalDescription
+  , fromPhonologicalEncoding
 
-  initial,
-  rounding,
-  division,
-  repeatedInitial,
-  rhyme,
-  tone,
-
-  placeOfArticulation,
-  voicing,
-  phonologicalClass,
-
-  phonologicalDescription,
-  phonologicalEncoding,
-  phonologicalExpression,
-  fromPhonologicalDescription,
-
-  representativeCharacter,
-  fanqie,
-  entries,
-  belongsTo,
-  queryCharacter,
-  getPhonologicalLocations
-) where
+  , representativeCharacter
+  , fanqie
+  , entries
+  , belongsTo
+  , queryCharacter
+  , getPhonologicalLocations
+  ) where
 
 import Prelude
 
@@ -71,29 +73,44 @@ foreign import voicing :: PhonologicalLocation -> String
 -- | Get the class (攝) from a phonological location.
 foreign import phonologicalClass :: PhonologicalLocation -> String
 
--- 其他音韻屬性
+-- Phonological description and encoding
 
+-- | Get the phonological description (音韻描述) of a phonological location.
 foreign import phonologicalDescription :: PhonologicalLocation -> String
+
+-- | Get the phonological encoding (音韻編碼) of a phonological location.
 foreign import phonologicalEncoding :: PhonologicalLocation -> String
+
+-- | Get the phonological expression (音韻表達式) of a phonological location.
 foreign import phonologicalExpression :: PhonologicalLocation -> String
+
+-- Constructor
+
+-- | Convert a phonological description (音韻描述) to the corresponding phonological location (音韻地位).
 foreign import fromPhonologicalDescription1 :: String -> Nullable PhonologicalLocation
 
 fromPhonologicalDescription :: String -> Maybe PhonologicalLocation
 fromPhonologicalDescription = toMaybe <$> fromPhonologicalDescription1
 
--- 代表字
+-- | Convert a phonological encoding (音韻編碼) to the corresponding phonological location (音韻地位).
+foreign import fromPhonologicalEncoding1 :: String -> Nullable PhonologicalLocation
+
+fromPhonologicalEncoding :: String -> Maybe PhonologicalLocation
+fromPhonologicalEncoding = toMaybe <$> fromPhonologicalEncoding1
+
+-- representative character and fanqie
 
 foreign import representativeCharacter1 :: PhonologicalLocation -> Nullable String
 
 representativeCharacter ::  PhonologicalLocation -> Maybe Char
 representativeCharacter pl = map char $ toMaybe $ representativeCharacter1 pl
 
--- 反切
-
 foreign import fanqie1 :: PhonologicalLocation -> String -> Nullable String
 
 fanqie :: PhonologicalLocation -> Char -> Maybe String
 fanqie pl ch = toMaybe $ fanqie1 pl $ singleton ch
+
+-- entries
 
 foreign import entries :: PhonologicalLocation -> Array { character :: String, explanation :: String }
 

@@ -22,6 +22,7 @@ import Qieyun (
   phonologicalEncoding,
   phonologicalExpression,
   fromPhonologicalDescription,
+  fromPhonologicalEncoding,
 
   representativeCharacter,
   fanqie,
@@ -39,7 +40,9 @@ shouldEqual a b =
 main :: Effect Unit
 main = do
   case fromPhonologicalDescription "幫三凡入" of
-    Nothing -> log "Error"
+    Nothing -> do
+      log "Error"
+      exit 1
     Just pl -> do
       initial pl `shouldEqual` "幫"
       rounding pl `shouldEqual` Nothing
@@ -61,3 +64,10 @@ main = do
 
       belongsTo pl "脣音" `shouldEqual` true
       belongsTo pl "三等 平聲" `shouldEqual` false
+
+      case fromPhonologicalEncoding "A5T" of
+        Nothing -> do
+          log "Error"
+          exit 1
+        Just pl2 -> do
+          (pl == pl2) `shouldEqual` true
