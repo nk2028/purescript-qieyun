@@ -6,28 +6,31 @@ import Data.Maybe (Maybe(..))
 import Effect (Effect)
 import Effect.Class.Console (log)
 import Node.Process (exit)
-import Qieyun (
-  initial,
-  rounding,
-  division,
-  repeatedInitial,
-  rhyme,
-  tone,
+import Qieyun
+  ( PhonologicalLocation
+  -- The six elements of a phonological location
+  , initial
+  , rounding
+  , division
+  , repeatedInitial
+  , rhyme
+  , tone
+  -- Extended phonological attributes
+  , placeOfArticulation
+  , voicing
+  , phonologicalClass
+  -- Phonological description and encoding
+  , phonologicalDescription
+  , phonologicalEncoding
+  , phonologicalExpression
+  -- Constructor
+  , fromPhonologicalDescription
+  , fromPhonologicalEncoding
 
-  voicing,
-  phonologicalClass,
-  placeOfArticulation,
-
-  phonologicalDescription,
-  phonologicalEncoding,
-  phonologicalExpression,
-  fromPhonologicalDescription,
-  fromPhonologicalEncoding,
-
-  representativeCharacter,
-  fanqie,
-  belongsTo
-)
+  , representativeCharacter
+  , fanqie
+  , belongsTo
+  )
 
 shouldEqual :: forall a. Show a => Eq a => a -> a -> Effect Unit
 shouldEqual a b =
@@ -36,6 +39,9 @@ shouldEqual a b =
       log $ "Error: " <> (show a) <> " should be equal to " <> (show b)
       exit 1
     else pure unit
+
+x :: Maybe PhonologicalLocation
+x = fromPhonologicalEncoding "A5T"
 
 main :: Effect Unit
 main = do
