@@ -23,13 +23,13 @@ import Qieyun
   , phonologicalDescription
   , phonologicalEncoding
   , phonologicalExpression
+  , satisfies
   -- Constructor
   , fromPhonologicalDescription
   , fromPhonologicalEncoding
-
+  -- Queries
   , representativeCharacter
   , fanqie
-  , belongsTo
   )
 
 shouldEqual :: forall a. Show a => Eq a => a -> a -> Effect Unit
@@ -66,10 +66,10 @@ main = do
       phonologicalExpression pl `shouldEqual` "幫母 三等 凡韻 入聲"
 
       representativeCharacter pl `shouldEqual` Just '法'
-      fanqie pl '法' `shouldEqual` Just "方乏"
+      fanqie '法' pl `shouldEqual` Just "方乏"
 
-      belongsTo pl "脣音" `shouldEqual` true
-      belongsTo pl "三等 平聲" `shouldEqual` false
+      satisfies pl "脣音" `shouldEqual` true
+      satisfies pl "三等 平聲" `shouldEqual` false
 
       case fromPhonologicalEncoding "A5T" of
         Nothing -> do
