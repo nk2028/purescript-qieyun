@@ -23,35 +23,15 @@ exports.phonologicalExpression = pl => pl['表達式'];
 exports.satisfies = pl => s => pl['屬於'](s);
 
 // Constructor
-exports.phonologicalLocation1 = a => b => c => d => e => f => {
-  try {
-    return new Qieyun['音韻地位'](a, b, c, d, e, f);
-  } catch (err) {
-    return null;
-  }
-}
-
-exports.fromPhonologicalDescription1 = s => {
-  try {
-    return Qieyun['音韻地位']['from描述'](s);
-  } catch (err) {
-    return null;
-  }
-}
-
-exports.fromPhonologicalEncoding1 = s => {
-  try {
-    return Qieyun['音韻地位']['from編碼'](s);
-  } catch (err) {
-    return null;
-  }
-}
+exports.phonologicalLocation1 = a => b => c => d => e => f => new Qieyun['音韻地位'](a, b, c, d, e, f);
+exports.fromPhonologicalDescription = s => Qieyun['音韻地位']['from描述'](s);
+exports.fromPhonologicalEncoding = s => Qieyun['音韻地位']['from編碼'](s);
 
 // Queries
 exports.representativeCharacter1 = pl => pl['代表字'];
 exports.fanqie1 = s => pl => pl['反切'](s);
 exports.entries = pl => pl['條目'].map(o => ({ character: o['字頭'], explanation: o['解釋'] }));
-exports.queryCharacter1 = s => Qieyun['query字頭'](s).map(o => ({ explanation: o['解釋'], phonologicalLocation: o['音韻地位'] }));
+exports.queryCharacter = s => Qieyun['query字頭'](s).map(o => ({ explanation: o['解釋'], phonologicalLocation: o['音韻地位'] }));
 
 // List all phonological locations
 exports.getPhonologicalLocations = () => [...Qieyun['iter音韻地位']()];

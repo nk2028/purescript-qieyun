@@ -1,6 +1,6 @@
 { name = "qieyun"
 , dependencies =
-  [ "console", "effect", "node-process", "nullable", "psci-support", "strings" ]
+  [ "effect", "nullable", "psci-support" ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
 }
