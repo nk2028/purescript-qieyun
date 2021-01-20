@@ -4,6 +4,7 @@
 
 ```sh
 npm install -g pulp purescript bower spago
+pulp login
 ```
 
 ## Test
@@ -24,7 +25,6 @@ bower install
 ## Publish
 
 ```sh
-git tag v0.1.0 # change the version number
-pulp login
+git tag v0.2.0
 pulp publish --no-push
 ```

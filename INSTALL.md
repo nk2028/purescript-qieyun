@@ -34,7 +34,7 @@ Add the following lines in `packages.dhall`.
   with qieyun =
     { dependencies = [ "effect", "nullable", "psci-support" ]
     , repo = "https://github.com/nk2028/purescript-qieyun.git"
-    , version = "v0.1.1"
+    , version = "v0.2.0"
     }
 ```
 
