@@ -19,10 +19,6 @@
   ],
   "dependencies": {
     "purescript-maybe": "^4.0.1",
-    "purescript-nullable": "^4.1.1",
-    "purescript-strings": "^4.0.2"
-  },
-  "devDependencies": {
-    "purescript-node-process": "^7.0.0"
+    "purescript-nullable": "^4.1.1"
   }
 }
