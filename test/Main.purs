@@ -6,27 +6,31 @@ import Data.Maybe (Maybe(..))
 import Effect (Effect)
 import Effect.Class.Console (log)
 import Node.Process (exit)
-import Qieyun (
-  initial,
-  rounding,
-  division,
-  repeatedInitial,
-  rhyme,
-  tone,
-
-  voicing,
-  phonologicalClass,
-  placeOfArticulation,
-
-  phonologicalDescription,
-  phonologicalEncoding,
-  phonologicalExpression,
-  fromPhonologicalDescription,
-
-  representativeCharacter,
-  fanqie,
-  belongsTo
-)
+import Qieyun
+  ( PhonologicalLocation
+  -- The six elements of a phonological location
+  , initial
+  , rounding
+  , division
+  , repeatedInitial
+  , rhyme
+  , tone
+  -- Extended phonological attributes
+  , placeOfArticulation
+  , voicing
+  , phonologicalClass
+  -- Phonological description and encoding
+  , phonologicalDescription
+  , phonologicalEncoding
+  , phonologicalExpression
+  , satisfies
+  -- Constructor
+  , fromPhonologicalDescription
+  , fromPhonologicalEncoding
+  -- Queries
+  , representativeCharacter
+  , fanqie
+  )
 
 shouldEqual :: forall a. Show a => Eq a => a -> a -> Effect Unit
 shouldEqual a b =
@@ -36,10 +40,15 @@ shouldEqual a b =
       exit 1
     else pure unit
 
+x :: Maybe PhonologicalLocation
+x = fromPhonologicalEncoding "A5T"
+
 main :: Effect Unit
 main = do
   case fromPhonologicalDescription "幫三凡入" of
-    Nothing -> log "Error"
+    Nothing -> do
+      log "Error"
+      exit 1
     Just pl -> do
       initial pl `shouldEqual` "幫"
       rounding pl `shouldEqual` Nothing
@@ -57,7 +66,14 @@ main = do
       phonologicalExpression pl `shouldEqual` "幫母 三等 凡韻 入聲"
 
       representativeCharacter pl `shouldEqual` Just '法'
-      fanqie pl '法' `shouldEqual` Just "方乏"
+      fanqie '法' pl `shouldEqual` Just "方乏"
 
-      belongsTo pl "脣音" `shouldEqual` true
-      belongsTo pl "三等 平聲" `shouldEqual` false
+      satisfies pl "脣音" `shouldEqual` true
+      satisfies pl "三等 平聲" `shouldEqual` false
+
+      case fromPhonologicalEncoding "A5T" of
+        Nothing -> do
+          log "Error"
+          exit 1
+        Just pl2 -> do
+          (pl == pl2) `shouldEqual` true
