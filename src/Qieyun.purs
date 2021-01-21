@@ -202,36 +202,36 @@ foreign import fromPhonologicalEncoding :: String -> PhonologicalLocation
 
 -- Queries
 
-foreign import representativeCharacter1 :: PhonologicalLocation -> Nullable Char
+foreign import representativeCharacter1 :: PhonologicalLocation -> Nullable String
 
 -- | Get the representative character (代表字) of a phonological location (音韻地位).
 -- |
 -- | ```purescript
--- | representativeCharacter $ fromPhonologicalDescription "幫三凡入" = Just '法'
--- | representativeCharacter $ fromPhonologicalDescription "羣開三A支平" = Just '祇'
+-- | representativeCharacter $ fromPhonologicalDescription "幫三凡入" = Just "法"
+-- | representativeCharacter $ fromPhonologicalDescription "羣開三A支平" = Just "祇"
 -- | representativeCharacter $ fromPhonologicalDescription "常開三麻去" = Nothing
 -- | ```
-representativeCharacter ::  PhonologicalLocation -> Maybe Char
+representativeCharacter ::  PhonologicalLocation -> Maybe String
 representativeCharacter pl = toMaybe $ representativeCharacter1 pl
 
-foreign import fanqie1 :: Char -> PhonologicalLocation -> Nullable String
+foreign import fanqie1 :: String -> PhonologicalLocation -> Nullable String
 
 -- | Get the fanqie (反切) of a phonological location (音韻地位).
 -- |
 -- | ```purescript
--- | fanqie '法' $ fromPhonologicalDescription "幫三凡入" = Just '方乏'
--- | fanqie '祇' $ fromPhonologicalDescription "羣開三A支平" = Just '巨支'
+-- | fanqie "法" $ fromPhonologicalDescription "幫三凡入" = Just "方乏"
+-- | fanqie "祇" $ fromPhonologicalDescription "羣開三A支平" = Just "巨支"
 -- | ```
 -- |
 -- | If you want to get the default fanqie of a phonological location, you can provide some random characters
--- | as the first parameter, such as `'?'`.
+-- | as the first parameter, such as `"?"`.
 -- |
 -- | ```purescript
--- | fanqie '?' $ fromPhonologicalDescription "幫三凡入" = Just '方乏'
--- | fanqie '?' $ fromPhonologicalDescription "羣開三A支平" = Just '巨支'
--- | fanqie '?' $ fromPhonologicalDescription "常開三麻去" = Nothing
+-- | fanqie "?" $ fromPhonologicalDescription "幫三凡入" = Just "方乏"
+-- | fanqie "?" $ fromPhonologicalDescription "羣開三A支平" = Just "巨支"
+-- | fanqie "?" $ fromPhonologicalDescription "常開三麻去" = Nothing
 -- | ```
-fanqie :: Char -> PhonologicalLocation -> Maybe String
+fanqie :: String -> PhonologicalLocation -> Maybe String
 fanqie ch pl = toMaybe $ fanqie1 ch pl
 
 -- | Get the corresponding characters and their explanations of a phonological location (音韻地位).
@@ -245,9 +245,9 @@ foreign import entries :: PhonologicalLocation -> Array { character :: String, e
 -- | Get the explanations and phonological locations (音韻地位) of a character.
 -- |
 -- | ```purescript
--- | queryCharacter '結' = [{ explanation: "締也古屑切十五", phonologicalLocation: #見開四先入 }]
+-- | queryCharacter "結" = [{ explanation: "締也古屑切十五", phonologicalLocation: #見開四先入 }]
 -- | ```
-foreign import queryCharacter :: Char -> Array { explanation :: String, phonologicalLocation :: PhonologicalLocation }
+foreign import queryCharacter :: String -> Array { explanation :: String, phonologicalLocation :: PhonologicalLocation }
 
 -- List all phonological locations
 
