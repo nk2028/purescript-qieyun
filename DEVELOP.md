@@ -13,7 +13,7 @@ Spago:
 
 ```sh
 npm install
-npm test
+spago test --no-install
 ```
 
 Bower:
@@ -26,5 +26,5 @@ bower install
 
 ```sh
 git tag v0.3.0
-pulp publish --no-push
+yes | pulp publish --no-push
 ```
