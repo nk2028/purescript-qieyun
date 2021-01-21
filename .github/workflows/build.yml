@@ -30,6 +30,6 @@ jobs:
         npm install
         spago install
     - name: Build
-      run: npm run build
+      run: spago build
     - name: Test
-      run: npm test
+      run: spago test --no-install

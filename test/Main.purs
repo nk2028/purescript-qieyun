@@ -23,6 +23,7 @@ import Qieyun
   , phonologicalExpression
   , satisfies
   -- Constructor
+  , phonologicalLocation
   , fromPhonologicalDescription
   , fromPhonologicalEncoding
   -- Queries
@@ -35,7 +36,7 @@ foreign import exit :: String -> Effect Unit
 shouldEqual :: forall a. Show a => Eq a => a -> a -> Effect Unit
 shouldEqual a b =
   if a /= b
-    then exit $ (show a) <> " should be equal to " <> (show b)
+    then exit $ show a <> " should be equal to " <> show b
     else pure unit
 
 x :: PhonologicalLocation
@@ -60,12 +61,11 @@ main = do
   phonologicalEncoding pl `shouldEqual` "A5T"
   phonologicalExpression pl `shouldEqual` "幫母 三等 凡韻 入聲"
 
-  representativeCharacter pl `shouldEqual` Just '法'
-  fanqie '法' pl `shouldEqual` Just "方乏"
+  representativeCharacter pl `shouldEqual` Just "法"
+  fanqie "法" pl `shouldEqual` Just "方乏"
 
   satisfies pl "脣音" `shouldEqual` true
   satisfies pl "三等 平聲" `shouldEqual` false
 
-  let pl2 = fromPhonologicalEncoding "A5T"
-
-  pl `shouldEqual` pl2
+  pl `shouldEqual` fromPhonologicalEncoding "A5T"
+  pl `shouldEqual` phonologicalLocation "幫" Nothing "三" Nothing "凡" "入"
