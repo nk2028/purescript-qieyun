@@ -40,7 +40,7 @@ shouldEqual a b =
     else pure unit
 
 x :: PhonologicalPosition
-x = fromPhonologicalEncoding "A5T"
+x = fromPhonologicalEncoding "A9D"
 
 main :: Effect Unit
 main = do
@@ -58,7 +58,7 @@ main = do
   phonologicalClass pp `shouldEqual` "咸"
 
   phonologicalDescription pp `shouldEqual` "幫三凡入"
-  phonologicalEncoding pp `shouldEqual` "A5T"
+  phonologicalEncoding pp `shouldEqual` "A9D"
   phonologicalExpression pp `shouldEqual` "幫母 三等 凡韻 入聲"
 
   representativeCharacter pp `shouldEqual` Just "法"
@@ -67,5 +67,5 @@ main = do
   satisfies pp "脣音" `shouldEqual` true
   satisfies pp "三等 平聲" `shouldEqual` false
 
-  pp `shouldEqual` fromPhonologicalEncoding "A5T"
+  pp `shouldEqual` fromPhonologicalEncoding "A9D"
   pp `shouldEqual` phonologicalPosition "幫" Nothing "三" Nothing "凡" "入"

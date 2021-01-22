@@ -152,8 +152,8 @@ foreign import phonologicalDescription :: PhonologicalPosition -> String
 -- | Get the phonological encoding (音韻編碼) of a phonological position (音韻地位).
 -- |
 -- | ```purescript
--- | phonologicalEncoding $ fromPhonologicalDescription "幫三凡入" = "A5T"
--- | phonologicalEncoding $ fromPhonologicalDescription "羣開三A支平" = "fEQ"
+-- | phonologicalEncoding $ fromPhonologicalDescription "幫三凡入" = "A9D"
+-- | phonologicalEncoding $ fromPhonologicalDescription "羣開三A支平" = "fFA"
 -- | ```
 foreign import phonologicalEncoding :: PhonologicalPosition -> String
 
@@ -193,8 +193,8 @@ foreign import fromPhonologicalDescription :: String -> PhonologicalPosition
 -- | Convert a phonological encoding (音韻編碼) to the corresponding phonological position (音韻地位).
 -- |
 -- | ```purescript
--- | fromPhonologicalEncoding "A5T" = #幫三凡入
--- | fromPhonologicalEncoding "fEQ" = #羣開三A支平
+-- | fromPhonologicalEncoding "A9D" = #幫三凡入
+-- | fromPhonologicalEncoding "fFA" = #羣開三A支平
 -- | ```
 -- |
 -- | **Unsafe:** throw a runtime exception if the given phonological encoding is invalid.

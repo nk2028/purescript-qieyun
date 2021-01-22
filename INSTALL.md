@@ -15,7 +15,7 @@ You need to have a `package.json` in your project root. If you do not have the f
 Run the following command:
 
 ```sh
-npm install qieyun@0.11.0
+npm install qieyun@0.12.0
 ```
 
 This command will affect `package.json` and `package-lock.json`.
@@ -34,7 +34,7 @@ Add the following lines in `packages.dhall`.
   with qieyun =
     { dependencies = [ "effect", "nullable", "psci-support" ]
     , repo = "https://github.com/nk2028/purescript-qieyun.git"
-    , version = "v0.4.0"
+    , version = "v0.5.0"
     }
 ```
 
