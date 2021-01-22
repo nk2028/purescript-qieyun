@@ -5,8 +5,8 @@ import Prelude
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
 import Qieyun
-  ( PhonologicalLocation
-  -- The six elements of a phonological location
+  ( PhonologicalPosition
+  -- The six elements of a phonological position
   , initial
   , rounding
   , division
@@ -23,7 +23,7 @@ import Qieyun
   , phonologicalExpression
   , satisfies
   -- Constructor
-  , phonologicalLocation
+  , phonologicalPosition
   , fromPhonologicalDescription
   , fromPhonologicalEncoding
   -- Queries
@@ -39,7 +39,7 @@ shouldEqual a b =
     then exit $ show a <> " should be equal to " <> show b
     else pure unit
 
-x :: PhonologicalLocation
+x :: PhonologicalPosition
 x = fromPhonologicalEncoding "A5T"
 
 main :: Effect Unit
@@ -68,4 +68,4 @@ main = do
   satisfies pl "三等 平聲" `shouldEqual` false
 
   pl `shouldEqual` fromPhonologicalEncoding "A5T"
-  pl `shouldEqual` phonologicalLocation "幫" Nothing "三" Nothing "凡" "入"
+  pl `shouldEqual` phonologicalPosition "幫" Nothing "三" Nothing "凡" "入"

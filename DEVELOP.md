@@ -25,6 +25,6 @@ bower install
 ## Publish
 
 ```sh
-git tag v0.3.0
+git tag v0.4.0
 yes | pulp publish --no-push
 ```
