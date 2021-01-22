@@ -46,7 +46,7 @@ instance eqPhonologicalPosition :: Eq PhonologicalPosition where
   eq = eqPhonologicalPosition1
 
 instance showPhonologicalPosition :: Show PhonologicalPosition where
-  show pl = "#" <> phonologicalDescription pl
+  show pp = "#" <> phonologicalDescription pp
 
 -- The six elements of a phonological position (音韻地位)
 
@@ -212,7 +212,7 @@ foreign import representativeCharacter1 :: PhonologicalPosition -> Nullable Stri
 -- | representativeCharacter $ fromPhonologicalDescription "常開三麻去" = Nothing
 -- | ```
 representativeCharacter ::  PhonologicalPosition -> Maybe String
-representativeCharacter pl = toMaybe $ representativeCharacter1 pl
+representativeCharacter pp = toMaybe $ representativeCharacter1 pp
 
 foreign import fanqie1 :: String -> PhonologicalPosition -> Nullable String
 
@@ -232,7 +232,7 @@ foreign import fanqie1 :: String -> PhonologicalPosition -> Nullable String
 -- | fanqie "?" $ fromPhonologicalDescription "常開三麻去" = Nothing
 -- | ```
 fanqie :: String -> PhonologicalPosition -> Maybe String
-fanqie ch pl = toMaybe $ fanqie1 ch pl
+fanqie ch pp = toMaybe $ fanqie1 ch pp
 
 -- | Get the corresponding characters and their explanations of a phonological position (音韻地位).
 -- |

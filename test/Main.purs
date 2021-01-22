@@ -44,28 +44,28 @@ x = fromPhonologicalEncoding "A5T"
 
 main :: Effect Unit
 main = do
-  let pl = fromPhonologicalDescription "幫三凡入"
+  let pp = fromPhonologicalDescription "幫三凡入"
 
-  initial pl `shouldEqual` "幫"
-  rounding pl `shouldEqual` Nothing
-  division pl `shouldEqual` "三"
-  repeatedInitial pl `shouldEqual` Nothing
-  rhyme pl `shouldEqual` "凡"
-  tone pl `shouldEqual` "入"
+  initial pp `shouldEqual` "幫"
+  rounding pp `shouldEqual` Nothing
+  division pp `shouldEqual` "三"
+  repeatedInitial pp `shouldEqual` Nothing
+  rhyme pp `shouldEqual` "凡"
+  tone pp `shouldEqual` "入"
 
-  placeOfArticulation pl `shouldEqual` "脣"
-  voicing pl `shouldEqual` "全清"
-  phonologicalClass pl `shouldEqual` "咸"
+  placeOfArticulation pp `shouldEqual` "脣"
+  voicing pp `shouldEqual` "全清"
+  phonologicalClass pp `shouldEqual` "咸"
 
-  phonologicalDescription pl `shouldEqual` "幫三凡入"
-  phonologicalEncoding pl `shouldEqual` "A5T"
-  phonologicalExpression pl `shouldEqual` "幫母 三等 凡韻 入聲"
+  phonologicalDescription pp `shouldEqual` "幫三凡入"
+  phonologicalEncoding pp `shouldEqual` "A5T"
+  phonologicalExpression pp `shouldEqual` "幫母 三等 凡韻 入聲"
 
-  representativeCharacter pl `shouldEqual` Just "法"
-  fanqie "法" pl `shouldEqual` Just "方乏"
+  representativeCharacter pp `shouldEqual` Just "法"
+  fanqie "法" pp `shouldEqual` Just "方乏"
 
-  satisfies pl "脣音" `shouldEqual` true
-  satisfies pl "三等 平聲" `shouldEqual` false
+  satisfies pp "脣音" `shouldEqual` true
+  satisfies pp "三等 平聲" `shouldEqual` false
 
-  pl `shouldEqual` fromPhonologicalEncoding "A5T"
-  pl `shouldEqual` phonologicalPosition "幫" Nothing "三" Nothing "凡" "入"
+  pp `shouldEqual` fromPhonologicalEncoding "A5T"
+  pp `shouldEqual` phonologicalPosition "幫" Nothing "三" Nothing "凡" "入"
